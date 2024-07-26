@@ -11,11 +11,15 @@ module.exports.getAllBooks = async (req, res) => {
 };
 
 module.exports.createBook = async (req, res) => {
-  const book = new Book({
+  
+  try {const book = new Book({
     title: req.body.title,
-    author: req.body.author
+    author: req.body.author,
+    price: req.body.price,
+    stock: req.body.stock,
+    date: req.body.date,
+    amount:req.body.amount
   });
-  try {
     const newBook = await book.save();
     res.status(201).json(newBook);
   } catch (error) {
